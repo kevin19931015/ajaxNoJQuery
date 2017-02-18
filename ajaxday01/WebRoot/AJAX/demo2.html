@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AjaxPost提交数据</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=gbk">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <input type="button" id="b1" name="b1" value="test">
+    
+    <div id="d1">
+    
+    </div>
+    <script type="text/javascript">
+    window.onload=function(){//当页面被加载完时执行
+    	document.getElementById("b1").onclick=function(){
+    	//得到XmlHttpRequest
+    	var xhr = createXmlHttpRequest();
+    	//状态变化的回调函数
+    	xhr.onreadystatechange=function(){
+    		//状态4为完成
+    		if(xhr.readyState==4){
+    			//服务器状态正常
+    			if(xhr.status==200||xhr.status==304){
+    				}
+    			}
+		    }
+    		//建立服务器连接，初始化XmlHttpRequest对象
+        	xhr.open("POST","/ajaxday01/servlet/Servlet2");
+    		//设置post提交数据头
+    		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        	//发送数据
+        	xhr.send("username=kevin&password=123");
+    	}
+    }
+    function createXmlHttpRequest(){
+    	var xmlHttp;
+    	try{
+    		xmlHttp = new XMLHttpRequest();
+    	}catch(e){
+    		try{
+        		xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+    		}catch(e){
+    			try{
+            		xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        		}catch(e){
+        		}
+    		}
+    	}
+    	return xmlHttp;
+    }
+    </script>
+  </body>
+</html>
